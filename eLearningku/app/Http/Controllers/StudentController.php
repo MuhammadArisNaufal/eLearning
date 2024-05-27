@@ -15,4 +15,35 @@ class StudentController extends Controller
             'students' => $students
         ]);
     }
+
+    public function create(){
+        return view('admin.contents.student.create');
+    }
+
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'nim' => 'required|numeric',
+            'major' => 'required',
+            'class' => 'required'
+        ]);
+        
+        Student::create([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'major' => $request->major,
+            'class' => $request->class
+        ]);
+
+        return redirect('admin/student')->with('pesan', 'berhasil menambahkan data.');
+    }
+
+    public function edit($id){
+        $student = Student::find($id);
+
+        return view('admin.contents.student.edit', [
+            'student' => $student
+        ]);
+    }
+
 }

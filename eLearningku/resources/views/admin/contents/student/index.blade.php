@@ -16,7 +16,7 @@
     <div class="row">
         <div class="card">
           <div class="card-body py-3">
-            <a href="/student/create" class="btn btn-primary my-3">+ Student</a>
+            <a href="/admin/student/create" class="btn btn-primary my-3">+ Student</a>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -38,7 +38,7 @@
                                 <td>{{ $student->major }}</td>
                                 <td>{{ $student->class }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

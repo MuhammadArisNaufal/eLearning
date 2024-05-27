@@ -14,3 +14,9 @@ Route::get('admin/dashboard', [DashboardController::class, 'index']);
 Route::get('admin/student', [StudentController::class, 'index']);
 
 Route::get('admin/courses', [CoursesController::class, 'index']);
+
+Route::get('admin/student/create', [StudentController::class, 'create']);
+
+Route::post('admin/student/create', [StudentController::class, 'store']);
+
+Route::get('admin/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
