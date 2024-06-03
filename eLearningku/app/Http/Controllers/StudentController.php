@@ -46,4 +46,31 @@ class StudentController extends Controller
         ]);
     }
 
+    public function update($id, Request $request){
+        $student = Student::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'nim' => 'required|numeric',
+            'major' => 'required',
+            'class' => 'required'
+        ]);
+
+        $student->update([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'major' => $request->major,
+            'class' => $request->class
+        ]);
+
+        return redirect('/admin/student')->with('pesan', 'berhasil mengedit data.');
+    }
+
+    public function destroy($id){
+        $student = Student::find($id);
+
+        $student->delete();
+
+        return redirect('/admin/student')->with('pesan', 'berhasil menghapus data.');
+    }
 }
