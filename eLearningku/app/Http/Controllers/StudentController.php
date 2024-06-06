@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Http\Controllers\Controller;
+use App\Models\Courses;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -17,7 +18,12 @@ class StudentController extends Controller
     }
 
     public function create(){
-        return view('admin.contents.student.create');
+
+        $courses = Courses::all();
+
+        return view('admin.contents.student.create', [
+            'courses' => $courses
+        ]);
     }
 
     public function store(Request $request){
@@ -25,14 +31,16 @@ class StudentController extends Controller
             'name' => 'required',
             'nim' => 'required|numeric',
             'major' => 'required',
-            'class' => 'required'
+            'class' => 'required',
+            'courses_id' => 'nullable|numeric'
         ]);
         
         Student::create([
             'name' => $request->name,
             'nim' => $request->nim,
             'major' => $request->major,
-            'class' => $request->class
+            'class' => $request->class,
+            'courses_id' => $request->courses_id
         ]);
 
         return redirect('admin/student')->with('pesan', 'berhasil menambahkan data.');
