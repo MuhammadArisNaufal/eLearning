@@ -48,9 +48,11 @@ class StudentController extends Controller
 
     public function edit($id){
         $student = Student::find($id);
+        $courses = Courses::all();
+
 
         return view('admin.contents.student.edit', [
-            'student' => $student
+            'student' => $student, 'courses' => $courses
         ]);
     }
 
@@ -61,14 +63,19 @@ class StudentController extends Controller
             'name' => 'required',
             'nim' => 'required|numeric',
             'major' => 'required',
-            'class' => 'required'
+            'class' => 'required',
+            'courses_id' => 'nullable|numeric'
+
+
         ]);
 
         $student->update([
             'name' => $request->name,
             'nim' => $request->nim,
             'major' => $request->major,
-            'class' => $request->class
+            'class' => $request->class,
+            'courses_id' => $request->courses_id
+
         ]);
 
         return redirect('/admin/student')->with('pesan', 'berhasil mengedit data.');
