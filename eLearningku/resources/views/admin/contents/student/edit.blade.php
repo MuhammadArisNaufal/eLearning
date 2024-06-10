@@ -44,7 +44,7 @@
                         <select name="courses_id" id="courses_id" class="form-select">
                           <option value="">--pilih Courses--</option>
                            @foreach ($courses as $course)
-                              <option value="{{ $course->id }}">{{  $course->name}}</option>
+                              <option value="{{ $course->id }}" >{{  $course->name }}</option>
                            @endforeach
                         </select>
                     </div>
